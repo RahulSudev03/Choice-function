@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 public class Allocation {
     
 //sort students based on ranking
@@ -13,4 +17,5 @@ public class Allocation {
  *                                                         --> total seats - filled women seats = top ranked students in that category
  * 
  */
+
 }

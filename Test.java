@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Test {
@@ -11,5 +12,10 @@ public class Test {
          studentList.add(student1);
          studentList.add(student2);
          studentList.add(student3);
+
+         Collections.sort(studentList);
+         for(int i = 0; i < studentList.size(); i++){
+             System.out.println(studentList.get(i).toString());
+         }
     }
 }
