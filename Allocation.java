@@ -13,4 +13,33 @@ public class Allocation {
  *                                                         --> total seats - filled women seats = top ranked students in that category
  * 
  */
+private int Openwomen;
+private int Open;
+private int SCwomen;
+private int SC;
+private int STwomen;
+private int ST;
+private int OBCwomen;
+private int OBC;
+
+private int EWSwomen;
+private int EWS;
+
+
+
+    public Allocation(int Openwomen, int Open, int SCwomen, int SC, int STwomen, int ST, int OBCwomen, int EWSwomen, int EWS){
+        this.Openwomen = Openwomen;
+        this.Open = Open;
+        this.SCwomen = SCwomen;
+        this.SC = SC;
+        this.STwomen = STwomen;
+        this.ST = ST;
+        this.OBCwomen = OBCwomen;
+        this.OBC = OBC;
+        this. EWSwomen = EWSwomen;
+        this.EWS = EWS;
+
+    }
+
+    
 }
