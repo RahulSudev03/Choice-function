@@ -1,4 +1,4 @@
-public class Student {
+public class Student implements Comparable<Student>{
 
     private Gender gender;
     private Category category;
@@ -8,5 +8,15 @@ public class Student {
         this.gender = gender;
         this.category = category;
         this.ranking = ranking;
+    }
+
+    public int compareTo(Student student)
+    {
+        return(ranking - student.ranking);
+    }
+
+    @Override
+    public String toString() {
+        return "Ranking " +  this.ranking + ", Category: " + this.category;
     }
 }

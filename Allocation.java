@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 public class Allocation {
     
 //sort students based on ranking
@@ -41,5 +45,4 @@ private int EWS;
 
     }
 
-    
 }
