@@ -21,7 +21,7 @@ public class Student implements Comparable<Student>{
 
     @Override
     public String toString() {
-        return "Ranking " +  this.ranking + ", Category: " + this.category;
+        return "Ranking: " +  this.ranking + ", Gender: " + this.gender + ", Category: " + this.category + ", SelectionQuota: " + this.selectionQuta;
     }
 
     public Category getCategory() {
