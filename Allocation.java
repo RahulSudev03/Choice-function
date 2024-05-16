@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class Allocation {
     
@@ -29,6 +30,8 @@ private int OBC;
 private int EWSwomen;
 private int EWS;
 
+private List<Student> selectedList;
+
 
 
     public Allocation(int Openwomen, int Open, int SCwomen, int SC, int STwomen, int ST, int OBCwomen, int EWSwomen, int EWS){
@@ -42,6 +45,43 @@ private int EWS;
         this.OBC = OBC;
         this. EWSwomen = EWSwomen;
         this.EWS = EWS;
+
+    }
+
+    public void ChoiceFunction(Category category, List<Student> studentList,int categoryWomenSeats,int categorySeats){
+        List<Student> femaleList = new ArrayList<>();
+        List<Student> restList = new ArrayList<>();
+        for(int i = 0; i < studentList.size(); i++){
+            if(studentList.get(i).getCategory() == category){
+                if(studentList.get(i).getGender() == Gender.FEMALE) {
+                    femaleList.add(studentList.get(i));
+                }
+                else{
+                    restList.add(studentList.get(i));
+                }
+            }
+        }
+        if(femaleList.size()<= categoryWomenSeats){
+            for(int i = femaleList.size()-1; i>=0 ; i--){
+                selectedList.add(femaleList.get(i));
+                femaleList.get(i).setSelectionQuta(category);
+                studentList.remove(femaleList.get(i));
+//                femaleList.remove(i);
+                categoryWomenSeats--;
+            }
+            categorySeats += categoryWomenSeats;
+        }
+        else{
+            for(int i = 0; i<categoryWomenSeats;i++){
+                selectedList.add(femaleList.get(i));
+                femaleList.get(i).setSelectionQuta(category);
+                studentList.remove(femaleList.get(i));
+                femaleList.remove(i);
+            }
+            restList.addAll(femaleList);
+            Collections.sort(restList);
+        }
+
 
     }
 
