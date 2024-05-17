@@ -85,6 +85,7 @@ private List<Student> selectedList = new ArrayList<>();
         for(int i = 0; i < restList.size(); i++){
             System.out.println(restList.get(i).toString());
         }
+
         if(femaleList.size()<= categoryWomenSeats){
             for(int i = femaleList.size()-1; i>=0 ; i--){
                 selectedList.add(femaleList.get(i));
@@ -95,20 +96,26 @@ private List<Student> selectedList = new ArrayList<>();
             }
             //add more seats to the category
             categorySeats += categoryWomenSeats;
-        }
 
+            Collections.sort(selectedList);
+        }
         else{
-            for(int i = 0; i<categoryWomenSeats;i++){
+            for(int i = categoryWomenSeats-1; i>=0 ; i--){
                 selectedList.add(femaleList.get(i));
                 femaleList.get(i).setSelectionQuta(category);
                 studentList.remove(femaleList.get(i));
+                System.out.println("Female seats being added"+ femaleList.get(i));
                 femaleList.remove(i);
+
             }
             categorySeats -= categoryWomenSeats;
+
+            System.out.println("Female list size after allocation of women seats "+femaleList.size());
 
             //add the rest women to the restList
             restList.addAll(femaleList);
             Collections.sort(restList);
+            Collections.sort(selectedList);
         }
 
         System.out.println();
@@ -131,6 +138,7 @@ private List<Student> selectedList = new ArrayList<>();
             }
         }
 
+        Collections.sort(selectedList);
         System.out.println();
         System.out.println("Rest list after allocation in " + category);
         for(int i = 0; i < selectedList.size(); i++){

@@ -26,11 +26,11 @@ public class Test {
         Student student14 = new Student(Gender.FEMALE, Category.SC, 14);
         Student student15 = new Student(Gender.FEMALE, Category.SC, 15);
 
-         List<Student> studentList = new ArrayList<>();
-         studentList.add(student1);
-         studentList.add(student2);
-         studentList.add(student3);
-         studentList.add(student4);
+        List<Student> studentList = new ArrayList<>();
+        studentList.add(student1);
+        studentList.add(student2);
+        studentList.add(student3);
+        studentList.add(student4);
         studentList.add(student5);
         studentList.add(student6);
         studentList.add(student7);
@@ -50,7 +50,12 @@ public class Test {
          }
 
          Allocation newAllocation = new Allocation(5, 10, 5, 10, 5, 10, 5, 10, 5, 10);
+         newAllocation.ChoiceFunction(Category.OPEN, studentList, 5, 10);
          newAllocation.ChoiceFunction(Category.SC, studentList, 5, 10);
+         newAllocation.ChoiceFunction(Category.ST, studentList, 5, 10);
+         newAllocation.ChoiceFunction(Category.OBC, studentList, 5, 10);
+         newAllocation.ChoiceFunction(Category.EWS, studentList, 5, 10);
+
 
          System.out.println();
          System.out.println("Selected student list ");
