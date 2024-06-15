@@ -26,35 +26,72 @@ public class Test {
         Student student14 = new Student(Gender.FEMALE, Category.SC, 14);
         Student student15 = new Student(Gender.FEMALE, Category.SC, 15);
 
-        List<Student> studentList = new ArrayList<>();
-        studentList.add(student1);
-        studentList.add(student2);
-        studentList.add(student3);
-        studentList.add(student4);
-        studentList.add(student5);
-        studentList.add(student6);
-        studentList.add(student7);
-        studentList.add(student8);
-        studentList.add(student9);
-        studentList.add(student10);
-        studentList.add(student11);
-        studentList.add(student12);
-        studentList.add(student13);
-        studentList.add(student14);
-        studentList.add(student15);
+        List<Student> studentMainList = new ArrayList<>();
+        studentMainList.add(student1);
+        studentMainList.add(student2);
+        studentMainList.add(student3);
+        studentMainList.add(student4);
+        studentMainList.add(student5);
+        studentMainList.add(student6);
+        studentMainList.add(student7);
+        studentMainList.add(student8);
+        studentMainList.add(student9);
+        studentMainList.add(student10);
+        studentMainList.add(student11);
+        studentMainList.add(student12);
+        studentMainList.add(student13);
+        studentMainList.add(student14);
+        studentMainList.add(student15);
 
+        List<Student> secondaryStudentList = new ArrayList<>();
 
-         Collections.sort(studentList);
-         for(int i = 0; i < studentList.size(); i++){
-             System.out.println(studentList.get(i).toString());
+         Collections.sort(studentMainList);
+         for(int i = 0; i < studentMainList.size(); i++){
+             System.out.println(studentMainList.get(i).toString());
          }
 
-         Allocation newAllocation = new Allocation(5, 10, 5, 10, 5, 10, 5, 10, 5, 10);
-         newAllocation.ChoiceFunction(Category.OPEN, studentList, 5, 10);
-         newAllocation.ChoiceFunction(Category.SC, studentList, 5, 10);
-         newAllocation.ChoiceFunction(Category.ST, studentList, 5, 10);
-         newAllocation.ChoiceFunction(Category.OBC, studentList, 5, 10);
-         newAllocation.ChoiceFunction(Category.EWS, studentList, 5, 10);
+         int open = 10;
+         int SC = 10;
+         int ST = 10;
+         int OBC = 10;
+         int EWS = 10;
+         int remaining_seats_OPEN = 10;
+        int remaining_seats_SC = 10;
+        int remaining_seats_ST = 10;
+        int remaining_seats_OBC = 10;
+        int remaining_seats_EWS = 10;
+
+
+        Allocation newAllocation = new Allocation(5, open, 5, SC, 5, ST, 5, OBC, 5, EWS);
+
+        //Since OBC is a soft reserve category we need to move all its empty seats to open and run it till there are no more vacancies in OBC.
+        while(remaining_seats_OBC != 0){
+
+            //Adding all elements from main list to secondary list
+             for(int i = 0; i< studentMainList.size(); i++){
+                 secondaryStudentList.add(studentMainList.get(i));
+             }
+
+             // Running allocation function for each category
+
+             remaining_seats_OPEN = newAllocation.ChoiceFunction(Category.OPEN, secondaryStudentList, 5, open);
+             System.out.println("Remaining seats in open " +remaining_seats_OPEN);
+             remaining_seats_SC = newAllocation.ChoiceFunction(Category.SC, secondaryStudentList, 5, SC);
+             System.out.println("Remaining seats in SC " +remaining_seats_SC);
+             remaining_seats_ST = newAllocation.ChoiceFunction(Category.ST, secondaryStudentList, 5, ST);
+             System.out.println("Remaining seats in ST " +remaining_seats_ST);
+             remaining_seats_OBC = newAllocation.ChoiceFunction(Category.OBC, secondaryStudentList, 5, OBC);
+             System.out.println("Remaining seats in OBC " +remaining_seats_OBC);
+             remaining_seats_EWS = newAllocation.ChoiceFunction(Category.EWS, secondaryStudentList, 5, EWS);
+             System.out.println("Remaining seats in EWS " +remaining_seats_EWS);
+
+             //Adding remaining OBC seats to open and subtracting remaining OBC seats from OBC
+             open += remaining_seats_OBC;
+             OBC -= remaining_seats_OBC;
+
+             //clearing studentList for next iteration
+             secondaryStudentList.clear();
+        }
 
 
          System.out.println();
