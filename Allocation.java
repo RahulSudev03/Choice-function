@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Allocation {
@@ -48,15 +47,15 @@ private List<Student> selectedList = new ArrayList<>();
 
     }
 
-    public int ChoiceFunction(Category category, List<Student> studentList,int categoryWomenSeats,int categorySeats){
+    public int ChoiceFunction(PositionCategory category, List<Student> studentList,int categoryWomenSeats,int categorySeats){
         int initial_category_seats = categorySeats;
         int remaining_seats;
         int studentsSelectedInCurrentCategory = 0;
         List<Student> femaleList = new ArrayList<>();
         List<Student> restList = new ArrayList<>();
         for(int i = 0; i < studentList.size(); i++){
-            if (category != Category.OPEN){
-                if(studentList.get(i).getCategory() == category){
+            if (category != PositionCategory.OPEN){
+                if(studentList.get(i).getStudentCategory().getCategory() == category.getCategory()){
                     if(studentList.get(i).getGender() == Gender.FEMALE) {
                         femaleList.add(studentList.get(i));
                     }
@@ -78,13 +77,13 @@ private List<Student> selectedList = new ArrayList<>();
         Collections.sort(restList);
 
         System.out.println();
-        System.out.println("total number of females to be considered for " + category);
+        System.out.println("Total number of females to be considered for " + category);
         for(int i = 0; i < femaleList.size(); i++){
             System.out.println(femaleList.get(i).toString());
         }
 
         System.out.println();
-        System.out.println("rest of the members to be considered for " + category);
+        System.out.println("Rest of the members to be considered for " + category);
         for(int i = 0; i < restList.size(); i++){
             System.out.println(restList.get(i).toString());
         }
@@ -93,7 +92,7 @@ private List<Student> selectedList = new ArrayList<>();
             for(int i = femaleList.size()-1; i>=0 ; i--){
                 selectedList.add(femaleList.get(i));
                 //studentsSelectedInCurrentCategory++;
-                femaleList.get(i).setSelectionQuta(category);
+                femaleList.get(i).setSelectionQuota(category);
                 studentList.remove(femaleList.get(i));
                 femaleList.remove(i);
                 categoryWomenSeats--;
@@ -108,7 +107,7 @@ private List<Student> selectedList = new ArrayList<>();
             for(int i = categoryWomenSeats-1; i>=0 ; i--){
                 selectedList.add(femaleList.get(i));
                 //studentsSelectedInCurrentCategory++;
-                femaleList.get(i).setSelectionQuta(category);
+                femaleList.get(i).setSelectionQuota(category);
                 studentList.remove(femaleList.get(i));
                 femaleList.remove(i);
 
@@ -124,7 +123,7 @@ private List<Student> selectedList = new ArrayList<>();
         }
 
         System.out.println();
-        System.out.println("female seats that were added to "+ category);
+        System.out.println("After adding female student from "+ category + " to the selected student list");
         for(int i = 0; i < selectedList.size(); i++){
             System.out.println(selectedList.get(i).toString());
         }
@@ -134,14 +133,14 @@ private List<Student> selectedList = new ArrayList<>();
                 selectedList.add(restList.get(i));
                 //studentsSelectedInCurrentCategory++;
                 studentList.remove(restList.get(i));
-                restList.get(i).setSelectionQuta(category);
+                restList.get(i).setSelectionQuota(category);
             }
         }else {
             for(int i = 0; i < categorySeats; i++){
                 selectedList.add(restList.get(i));
                 //studentsSelectedInCurrentCategory++;
                 studentList.remove(restList.get(i));
-                restList.get(i).setSelectionQuta(category);
+                restList.get(i).setSelectionQuota(category);
             }
         }
 
@@ -149,7 +148,7 @@ private List<Student> selectedList = new ArrayList<>();
         System.out.println();
         System.out.println("Students selected in " + category);
         for(int i = 0; i < selectedList.size(); i++){
-            if(selectedList.get(i).getSelectionQuta() == category) {
+            if(selectedList.get(i).getSelectionQuota() == category) {
                 System.out.println(selectedList.get(i).toString());
                 studentsSelectedInCurrentCategory++;
             }

@@ -1,14 +1,13 @@
 public class Student implements Comparable<Student>{
 
     private Gender gender;
-    private Category category;
-
-    private Category selectionQuta;
+    private StudentCategory category;
+    private PositionCategory selectionQuota;
     private int ranking;
 
 
 
-    public Student(Gender gender, Category category, int ranking){
+    public Student(Gender gender, StudentCategory category, int ranking){
         this.gender = gender;
         this.category = category;
         this.ranking = ranking;
@@ -21,14 +20,14 @@ public class Student implements Comparable<Student>{
 
     @Override
     public String toString() {
-        return "Ranking: " +  this.ranking + ", Gender: " + this.gender + ", Category: " + this.category + ", SelectionQuota: " + this.selectionQuta;
+        return "Ranking: " +  this.ranking + ", Gender: " + this.gender + ", StudentCategory: " + this.category + ", SelectionQuota: " + this.selectionQuota;
     }
 
-    public Category getCategory() {
+    public StudentCategory getStudentCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setStudentCategory(StudentCategory category) {
         this.category = category;
     }
 
@@ -48,12 +47,12 @@ public class Student implements Comparable<Student>{
         this.ranking = ranking;
     }
 
-    public Category getSelectionQuta() {
-        return selectionQuta;
+    public PositionCategory getSelectionQuota() {
+        return selectionQuota;
     }
 
-    public void setSelectionQuta(Category selectionQuta) {
-        this.selectionQuta = selectionQuta;
+    public void setSelectionQuota(PositionCategory selectionQuota) {
+        this.selectionQuota = selectionQuota;
     }
 }
 
