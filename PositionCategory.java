@@ -8,8 +8,8 @@ public enum PositionCategory {
     OBC(Category.OBC),
     EWS(Category.EWS);
 
-    private Category category;
-    private PositionCategory(Category category) {
+    private final Category category;
+    PositionCategory(Category category) {
         this.category = category;
     }
 

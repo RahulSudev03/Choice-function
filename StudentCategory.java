@@ -9,8 +9,8 @@ public enum StudentCategory{
     OBC(Category.OBC),
     EWS(Category.EWS);
 
-    private Category category;
-    private StudentCategory(Category category) {
+    private final Category category;
+    StudentCategory(Category category) {
         this.category = category;
     }
 
