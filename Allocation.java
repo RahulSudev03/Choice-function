@@ -47,6 +47,7 @@ private List<Student> selectedList = new ArrayList<>();
 
     }
 
+    //The function that allocates students seats based on student ranking and reservation.
     public int ChoiceFunction(PositionCategory category, List<Student> studentList,int categoryWomenSeats,int categorySeats){
         int initial_category_seats = categorySeats;
         int remaining_seats;
